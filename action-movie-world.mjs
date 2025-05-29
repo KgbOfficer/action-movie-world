@@ -1,26 +1,4 @@
-// Register system settings
-  game.settings.register("action-movie-world", "setupComplete", {
-    name: "Compendium Setup Complete",
-    hint: "Whether the initial compendium setup has been completed.",
-    scope: "world",
-    config: false,
-    type: Boolean,
-    default: false
-  });
-
-  game.settings.register("action-movie-world", "camaraderie", {
-    name: "Current Camaraderie",
-    hint: "The current Camaraderie value for the group.",
-    scope: "world", 
-    config: true,
-    type: Number,
-    default: 0,
-    range: {
-      min: -3,
-      max: 3,
-      step: 1
-    }
-  });// Import configuration
+// Import configuration
 import { AMW } from "./config.mjs";
 import { AMWActor } from "./documents/actor.mjs";
 import { AMWActorSheet } from "./sheets/actor-sheet.mjs";
@@ -54,6 +32,30 @@ Hooks.once('init', async function() {
     types: ["move", "gear", "script"], 
     makeDefault: true,
     label: "AMW.SheetLabels.Item"
+  });
+
+  // Register system settings
+  game.settings.register("action-movie-world", "setupComplete", {
+    name: "Compendium Setup Complete",
+    hint: "Whether the initial compendium setup has been completed.",
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  });
+
+  game.settings.register("action-movie-world", "camaraderie", {
+    name: "Current Camaraderie",
+    hint: "The current Camaraderie value for the group.",
+    scope: "world", 
+    config: true,
+    type: Number,
+    default: 0,
+    range: {
+      min: -3,
+      max: 3,
+      step: 1
+    }
   });
 
   // Preload Handlebars templates
@@ -93,20 +95,7 @@ Hooks.once("ready", async function() {
     context.data = actor.data.data;
     return context;
   });
-});
 
-/* -------------------------------------------- */
-/*  Chat Message Hooks                          */
-/* -------------------------------------------- */
-Hooks.on("renderChatMessage", (message, html, data) => {
-  // Add click listeners for roll buttons in chat
-  html.find('.amw-roll').click(AMWChatMessage._onRollClick.bind(message));
-});
-
-/* -------------------------------------------- */
-/*  Ready Hook                                  */
-/* -------------------------------------------- */
-Hooks.once("ready", async function() {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => {
     if (data.type !== "Item") return;
@@ -125,6 +114,14 @@ Hooks.once("ready", async function() {
       console.error("AMW | Error setting up compendiums:", error);
     }
   }
+});
+
+/* -------------------------------------------- */
+/*  Chat Message Hooks                          */
+/* -------------------------------------------- */
+Hooks.on("renderChatMessage", (message, html, data) => {
+  // Add click listeners for roll buttons in chat
+  html.find('.amw-roll').click(AMWChatMessage._onRollClick.bind(message));
 });
 
 /* -------------------------------------------- */
