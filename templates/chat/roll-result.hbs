@@ -1,0 +1,20 @@
+<div class="amw roll-result">
+  <div class="result-header">
+    <h3>{{actor.name}} rolls {{statLabel}}</h3>
+    <div class="result-total {{resultType}}">{{result}}</div>
+  </div>
+  
+  <div class="roll-details">
+    <div class="roll-formula">{{formula}}</div>
+    <div class="roll-tooltip">{{{tooltip}}}</div>
+  </div>
+  
+  <div class="result-description">
+    <strong>{{resultLabel}}</strong>
+    {{#if gainTick}}
+    <div class="tick-notification">
+      <i class="fas fa-star"></i> Star Power Tick Gained!
+    </div>
+    {{/if}}
+  </div>
+</div>

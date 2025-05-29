@@ -1,0 +1,167 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'AMW.MoveName'}}"/></h1>
+      <div class="grid grid-2col">
+        <div>
+          <label>{{localize "AMW.MoveType"}}</label>
+          <select name="system.moveType">
+            {{#each config.moveTypes as |label key|}}
+            <option value="{{key}}" {{#if (eq ../system.moveType key)}}selected{{/if}}>{{localize label}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div>
+          <label>{{localize "AMW.Stat"}}</label>
+          <select name="system.stat">
+            <option value="">{{localize "AMW.NoStat"}}</option>
+            {{#each statOptions as |label key|}}
+            <option value="{{key}}" {{#if (eq ../system.stat key)}}selected{{/if}}>{{localize label}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      {{#if isBasicMove}}
+      <div class="basic-move-notice">
+        <p>{{localize "AMW.BasicMoveNotice"}}</p>
+      </div>
+      {{/if}}
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">{{localize "AMW.Description"}}</a>
+    <a class="item" data-tab="mechanics">{{localize "AMW.Mechanics"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    
+    {{!-- Description Tab --}}
+    <div class="tab" data-group="primary" data-tab="description">
+      <div class="move-description">
+        <label>{{localize "AMW.Description"}}</label>
+        {{editor system.description target="system.description" button=true}}
+      </div>
+      
+      {{#if system.moveType "script"}}
+      <div class="script-move-info">
+        <div class="grid grid-2col">
+          <div>
+            <label>{{localize "AMW.ScriptType"}}</label>
+            <select name="system.scriptType">
+              <option value="">--</option>
+              {{#each config.scripts as |label key|}}
+              <option value="{{key}}" {{#if (eq ../system.scriptType key)}}selected{{/if}}>{{localize label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div>
+            <label>{{localize "AMW.Temporary"}}</label>
+            <input type="checkbox" name="system.temporary" {{checked system.temporary}}/>
+            <span class="checkmark"></span>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+
+    {{!-- Mechanics Tab --}}
+    <div class="tab" data-group="primary" data-tab="mechanics">
+      <div class="move-mechanics">
+        
+        {{!-- Roll Information --}}
+        <div class="roll-info">
+          <div class="grid grid-2col">
+            <div>
+              <label>{{localize "AMW.CustomRoll"}}</label>
+              <input type="checkbox" name="system.customRoll" {{checked system.customRoll}}/>
+              <span class="checkmark"></span>
+            </div>
+            <div>
+              <label>{{localize "AMW.RollFormula"}}</label>
+              <input type="text" name="system.formula" value="{{system.formula}}" placeholder="2d6+@stat"/>
+            </div>
+          </div>
+        </div>
+
+        {{!-- Results --}}
+        <div class="move-results">
+          <h3>{{localize "AMW.Results"}}</h3>
+          
+          <div class="result-section">
+            <h4>{{localize "AMW.Hit"}} (10+)</h4>
+            {{editor system.hit target="system.hit" button=true}}
+          </div>
+          
+          <div class="result-section">
+            <h4>{{localize "AMW.PartialHit"}} (7-9)</h4>
+            {{editor system.partial target="system.partial" button=true}}
+          </div>
+          
+          <div class="result-section">
+            <h4>{{localize "AMW.Miss"}} (6-)</h4>
+            {{editor system.miss target="system.miss" button=true}}
+          </div>
+        </div>
+
+        {{!-- Special Mechanics --}}
+        <div class="special-mechanics">
+          <h3>{{localize "AMW.SpecialMechanics"}}</h3>
+          
+          <div class="grid grid-2col">
+            <div>
+              <label>{{localize "AMW.GivesHold"}}</label>
+              <input type="checkbox" name="system.givesHold" {{checked system.givesHold}}/>
+              <span class="checkmark"></span>
+            </div>
+            <div>
+              <label>{{localize "AMW.HoldAmount"}}</label>
+              <input type="number" name="system.holdAmount" value="{{system.holdAmount}}" min="0"/>
+            </div>
+          </div>
+          
+          <div class="grid grid-2col">
+            <div>
+              <label>{{localize "AMW.InflictsHarm"}}</label>
+              <input type="checkbox" name="system.inflictsHarm" {{checked system.inflictsHarm}}/>
+              <span class="checkmark"></span>
+            </div>
+            <div>
+              <label>{{localize "AMW.HarmAmount"}}</label>
+              <input type="number" name="system.harmAmount" value="{{system.harmAmount}}" min="0"/>
+            </div>
+          </div>
+          
+          <div class="grid grid-2col">
+            <div>
+              <label>{{localize "AMW.GivesTick"}}</label>
+              <input type="checkbox" name="system.givesTick" {{checked system.givesTick}}/>
+              <span class="checkmark"></span>
+            </div>
+            <div>
+              <label>{{localize "AMW.OncePerSession"}}</label>
+              <input type="checkbox" name="system.oncePerSession" {{checked system.oncePerSession}}/>
+              <span class="checkmark"></span>
+            </div>
+          </div>
+        </div>
+
+        {{!-- Tags --}}
+        <div class="move-tags">
+          <label>{{localize "AMW.Tags"}}</label>
+          <input type="text" name="system.tags" value="{{system.tags}}" placeholder="{{localize 'AMW.TagsPlaceholder'}}"/>
+          <p class="notes">{{localize "AMW.TagsHelp"}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- Sheet Footer --}}
+  <footer class="sheet-footer">
+    <button type="button" class="item-roll">{{localize "AMW.RollMove"}}</button>
+  </footer>
+</form>

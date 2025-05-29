@@ -1,0 +1,34 @@
+<div class="amw move-result">
+  <div class="result-header">
+    <h3>{{actor.name}} uses {{move}}</h3>
+    <div class="result-total {{resultType}}">{{result}}</div>
+  </div>
+  
+  <div class="roll-details">
+    <div class="roll-formula">{{formula}} ({{statLabel}})</div>
+    <div class="roll-tooltip">{{{tooltip}}}</div>
+  </div>
+  
+  <div class="move-description">
+    {{#if description}}
+    <p><em>{{description}}</em></p>
+    {{/if}}
+  </div>
+  
+  <div class="result-description">
+    <strong>{{resultLabel}}</strong>
+    {{#if (eq resultType "hit")}}
+      {{#if hit}}<p>{{{hit}}}</p>{{/if}}
+    {{else if (eq resultType "partial")}}
+      {{#if partial}}<p>{{{partial}}}</p>{{/if}}
+    {{else}}
+      {{#if miss}}<p>{{{miss}}}</p>{{/if}}
+    {{/if}}
+    
+    {{#if gainTick}}
+    <div class="tick-notification">
+      <i class="fas fa-star"></i> Star Power Tick Gained!
+    </div>
+    {{/if}}
+  </div>
+</div>

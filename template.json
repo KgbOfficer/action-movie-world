@@ -1,0 +1,152 @@
+{
+  "Actor": {
+    "types": ["actor", "character"],
+    "templates": {
+      "base": {
+        "biography": "",
+        "notes": "",
+        "gmNotes": ""
+      }
+    },
+    "actor": {
+      "templates": ["base"],
+      "actorName": "",
+      "playbook": "",
+      "experience": {
+        "value": 0,
+        "max": 5
+      },
+      "starPower": {
+        "value": 0,
+        "ticks": 0,
+        "max": 10
+      },
+      "stats": {
+        "agility": {
+          "value": 0
+        },
+        "drama": {
+          "value": 0
+        },
+        "muscles": {
+          "value": 0
+        },
+        "magnetism": {
+          "value": 0
+        },
+        "swagger": {
+          "value": 0
+        }
+      },
+      "career": {
+        "movies": [],
+        "totalMovies": 0,
+        "totalXP": 0
+      }
+    },
+    "character": {
+      "templates": ["base"],
+      "actorName": "",
+      "characterName": "",
+      "playbook": "",
+      "role": "supporting",
+      "movieName": "",
+      "experience": {
+        "value": 0,
+        "max": 5
+      },
+      "starPower": {
+        "value": 0,
+        "ticks": 0,
+        "max": 5
+      },
+      "harm": {
+        "value": 0,
+        "max": 5
+      },
+      "stats": {
+        "agility": {
+          "value": 0
+        },
+        "drama": {
+          "value": 0
+        },
+        "muscles": {
+          "value": 0
+        },
+        "magnetism": {
+          "value": 0
+        },
+        "swagger": {
+          "value": 0
+        }
+      },
+      "highlighted": {
+        "primary": "",
+        "secondary": ""
+      },
+      "holds": {
+        "vengeance": 0,
+        "other": ""
+      },
+      "relationship": {
+        "character": "",
+        "description": ""
+      },
+      "script": {
+        "type": "",
+        "villain": ""
+      },
+      "camaraderie": 0
+    }
+  },
+  "Item": {
+    "types": ["move", "gear", "script"],
+    "templates": {
+      "base": {
+        "description": ""
+      }
+    },
+    "move": {
+      "templates": ["base"],
+      "moveType": "basic",
+      "stat": "",
+      "customRoll": false,
+      "formula": "2d6+@stat",
+      "hit": "",
+      "partial": "",
+      "miss": "",
+      "temporary": false,
+      "scriptType": "",
+      "givesHold": false,
+      "holdAmount": 0,
+      "inflictsHarm": false,
+      "harmAmount": 0,
+      "givesTick": false,
+      "oncePerSession": false,
+      "tags": ""
+    },
+    "gear": {
+      "templates": ["base"],
+      "gearType": "equipment",
+      "harm": 0,
+      "armor": 0,
+      "range": "",
+      "qualities": "",
+      "quantity": 1,
+      "weight": 0,
+      "price": "",
+      "equipped": false
+    },
+    "script": {
+      "templates": ["base"],
+      "scriptType": "",
+      "moves": [],
+      "gear": [],
+      "relationships": [],
+      "villains": [],
+      "setting": "",
+      "themes": ""
+    }
+  }
+}
