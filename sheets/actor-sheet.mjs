@@ -57,14 +57,25 @@ export class AMWActorSheet extends ActorSheet {
       });
     }
 
-    // Prepare stat blocks with proper highlighting
+    // Prepare stat blocks with proper highlighting - FIXED
     context.stats = {};
     const highlightedStats = [
       context.system.highlighted?.primary,
       context.system.highlighted?.secondary
     ].filter(s => s);
     
-    for (let [key, stat] of Object.entries(context.system.stats || {})) {
+    // Ensure stats exist and create proper structure
+    if (!context.system.stats) {
+      context.system.stats = {
+        agility: { value: 0 },
+        drama: { value: 0 },
+        muscles: { value: 0 },
+        magnetism: { value: 0 },
+        swagger: { value: 0 }
+      };
+    }
+    
+    for (let [key, stat] of Object.entries(context.system.stats)) {
       context.stats[key] = {
         ...stat,
         key: key,
@@ -104,6 +115,27 @@ export class AMWActorSheet extends ActorSheet {
     // Actor career data
     context.playbook = CONFIG.AMW.playbooks[context.system.playbook] || "Unknown";
     
+    // Prepare stats for actor sheets too - ADDED
+    context.stats = {};
+    if (!context.system.stats) {
+      context.system.stats = {
+        agility: { value: 0 },
+        drama: { value: 0 },
+        muscles: { value: 0 },
+        magnetism: { value: 0 },
+        swagger: { value: 0 }
+      };
+    }
+    
+    for (let [key, stat] of Object.entries(context.system.stats)) {
+      context.stats[key] = {
+        ...stat,
+        key: key,
+        label: CONFIG.AMW.stats[key],
+        modifier: stat.value >= 0 ? `+${stat.value}` : `${stat.value}`
+      };
+    }
+    
     // Experience tracking
     context.experiencePoints = [];
     const maxXP = 5;
@@ -141,6 +173,13 @@ export class AMWActorSheet extends ActorSheet {
     context.basicMoves = moves.filter(m => m.system.moveType === 'basic');
     context.playbookMoves = moves.filter(m => m.system.moveType === 'playbook');
     context.scriptMoves = moves.filter(m => m.system.moveType === 'script');
+
+    // For actor sheets, separate permanent moves
+    if (context.actor.type === 'actor') {
+      context.permanentMoves = moves.filter(m => 
+        m.system.moveType === 'script' && !m.system.temporary
+      );
+    }
 
     // Organize gear by type
     context.weapons = gear.filter(g => g.system.gearType === 'weapon');

@@ -52,167 +52,7 @@
     {{!-- Stats Tab --}}
     <div class="tab" data-group="primary" data-tab="stats">
       <div class="grid grid-2col">
-        {{!-- Script Moves --}}
-        <div class="moves-category">
-          <h2>{{localize "AMW.ScriptMoves"}}</h2>
-          <ol class="items-list">
-            {{#each scriptMoves as |item id|}}
-            <li class="item flexrow" data-item-id="{{item._id}}">
-              <div class="item-name flexrow">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                <h4>{{item.name}}</h4>
-                {{#if item.system.temporary}}<span class="temporary-tag">{{localize "AMW.Temporary"}}</span>{{/if}}
-              </div>
-              <div class="item-controls">
-                <a class="item-control move-roll" title="{{localize 'AMW.Roll'}}"><i class="fas fa-dice-d20"></i></a>
-                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
-              </div>
-            </li>
-            {{/each}}
-          </ol>
-          <div class="item-create" data-type="move" data-move-type="script">
-            <a>{{localize "AMW.CreateMove"}}</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {{!-- Gear Tab --}}
-    <div class="tab" data-group="primary" data-tab="gear">
-      <div class="gear-section">
-        {{!-- Weapons --}}
-        <div class="gear-category">
-          <h2>{{localize "AMW.Weapons"}}</h2>
-          <ol class="items-list">
-            {{#each weapons as |item id|}}
-            <li class="item flexrow" data-item-id="{{item._id}}">
-              <div class="item-name flexrow">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                <h4>{{item.name}}</h4>
-                <div class="item-stats">
-                  {{#if item.system.harm}}<span class="harm">{{item.system.harm}}-harm</span>{{/if}}
-                  {{#if item.system.range}}<span class="range">{{item.system.range}}</span>{{/if}}
-                </div>
-              </div>
-              <div class="item-controls">
-                <a class="item-control gear-use" title="{{localize 'AMW.Use'}}"><i class="fas fa-hand-rock"></i></a>
-                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
-              </div>
-            </li>
-            {{/each}}
-          </ol>
-          <div class="item-create" data-type="gear" data-gear-type="weapon">
-            <a>{{localize "AMW.CreateWeapon"}}</a>
-          </div>
-        </div>
-
-        {{!-- Armor --}}
-        <div class="gear-category">
-          <h2>{{localize "AMW.Armor"}}</h2>
-          <ol class="items-list">
-            {{#each armor as |item id|}}
-            <li class="item flexrow" data-item-id="{{item._id}}">
-              <div class="item-name flexrow">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                <h4>{{item.name}}</h4>
-                <div class="item-stats">
-                  {{#if item.system.armor}}<span class="armor">{{item.system.armor}}-armor</span>{{/if}}
-                </div>
-              </div>
-              <div class="item-controls">
-                <a class="item-control gear-use" title="{{localize 'AMW.Use'}}"><i class="fas fa-shield-alt"></i></a>
-                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
-              </div>
-            </li>
-            {{/each}}
-          </ol>
-          <div class="item-create" data-type="gear" data-gear-type="armor">
-            <a>{{localize "AMW.CreateArmor"}}</a>
-          </div>
-        </div>
-
-        {{!-- Equipment --}}
-        <div class="gear-category">
-          <h2>{{localize "AMW.Equipment"}}</h2>
-          <ol class="items-list">
-            {{#each equipment as |item id|}}
-            <li class="item flexrow" data-item-id="{{item._id}}">
-              <div class="item-name flexrow">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                <h4>{{item.name}}</h4>
-                <div class="item-description">{{item.system.description}}</div>
-              </div>
-              <div class="item-controls">
-                <a class="item-control gear-use" title="{{localize 'AMW.Use'}}"><i class="fas fa-hand-paper"></i></a>
-                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
-              </div>
-            </li>
-            {{/each}}
-          </ol>
-          <div class="item-create" data-type="gear" data-gear-type="equipment">
-            <a>{{localize "AMW.CreateEquipment"}}</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {{!-- Notes Tab --}}
-    <div class="tab" data-group="primary" data-tab="notes">
-      <div class="notes-section">
-        <div class="grid grid-2col">
-          <div class="flexcol">
-            <h3>{{localize "AMW.SpecialRelationship"}}</h3>
-            <input type="text" name="system.relationship.character" value="{{system.relationship.character}}" placeholder="{{localize 'AMW.RelationshipCharacter'}}"/>
-            <textarea name="system.relationship.description" placeholder="{{localize 'AMW.RelationshipDescription'}}">{{system.relationship.description}}</textarea>
-          </div>
-          <div class="flexcol">
-            <h3>{{localize "AMW.Biography"}}</h3>
-            {{editor system.biography target="system.biography" button=true}}
-          </div>
-        </div>
-        
-        <div class="grid grid-2col">
-          <div class="flexcol">
-            <h3>{{localize "AMW.Notes"}}</h3>
-            {{editor system.notes target="system.notes" button=true}}
-          </div>
-          <div class="flexcol">
-            <h3>{{localize "AMW.GMNotes"}}</h3>
-            {{editor system.gmNotes target="system.gmNotes" button=true}}
-          </div>
-        </div>
-
-        {{!-- Current Script/Movie Info --}}
-        <div class="script-info">
-          <h3>{{localize "AMW.CurrentScript"}}</h3>
-          <div class="grid grid-3col">
-            <div>
-              <label>{{localize "AMW.ScriptType"}}</label>
-              <select name="system.script.type">
-                <option value="">--</option>
-                {{#each config.scripts as |label key|}}
-                <option value="{{key}}" {{#if (eq ../system.script.type key)}}selected{{/if}}>{{localize label}}</option>
-                {{/each}}
-              </select>
-            </div>
-            <div>
-              <label>{{localize "AMW.Villain"}}</label>
-              <input type="text" name="system.script.villain" value="{{system.script.villain}}" placeholder="{{localize 'AMW.VillainName'}}"/>
-            </div>
-            <div>
-              <label>{{localize "AMW.Camaraderie"}}</label>
-              <input type="number" name="system.camaraderie" value="{{system.camaraderie}}" min="-3" max="3"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</form>-- Left Column: Stats --}}
+        {{!-- Left Column: Stats --}}
         <div class="flexcol">
           <h2>{{localize "AMW.Stats"}}</h2>
           <div class="stats-grid">
@@ -395,4 +235,164 @@
           </div>
         </div>
 
-        {{!
+        {{!-- Script Moves --}}
+        <div class="moves-category">
+          <h2>{{localize "AMW.ScriptMoves"}}</h2>
+          <ol class="items-list">
+            {{#each scriptMoves as |item id|}}
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <div class="item-name flexrow">
+                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                <h4>{{item.name}}</h4>
+                {{#if item.system.temporary}}<span class="temporary-tag">{{localize "AMW.Temporary"}}</span>{{/if}}
+              </div>
+              <div class="item-controls">
+                <a class="item-control move-roll" title="{{localize 'AMW.Roll'}}"><i class="fas fa-dice-d20"></i></a>
+                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+            {{/each}}
+          </ol>
+          <div class="item-create" data-type="move" data-move-type="script">
+            <a>{{localize "AMW.CreateMove"}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Gear Tab --}}
+    <div class="tab" data-group="primary" data-tab="gear">
+      <div class="gear-section">
+        {{!-- Weapons --}}
+        <div class="gear-category">
+          <h2>{{localize "AMW.Weapons"}}</h2>
+          <ol class="items-list">
+            {{#each weapons as |item id|}}
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <div class="item-name flexrow">
+                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                <h4>{{item.name}}</h4>
+                <div class="item-stats">
+                  {{#if item.system.harm}}<span class="harm">{{item.system.harm}}-harm</span>{{/if}}
+                  {{#if item.system.range}}<span class="range">{{item.system.range}}</span>{{/if}}
+                </div>
+              </div>
+              <div class="item-controls">
+                <a class="item-control gear-use" title="{{localize 'AMW.Use'}}"><i class="fas fa-hand-rock"></i></a>
+                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+            {{/each}}
+          </ol>
+          <div class="item-create" data-type="gear" data-gear-type="weapon">
+            <a>{{localize "AMW.CreateWeapon"}}</a>
+          </div>
+        </div>
+
+        {{!-- Armor --}}
+        <div class="gear-category">
+          <h2>{{localize "AMW.Armor"}}</h2>
+          <ol class="items-list">
+            {{#each armor as |item id|}}
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <div class="item-name flexrow">
+                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                <h4>{{item.name}}</h4>
+                <div class="item-stats">
+                  {{#if item.system.armor}}<span class="armor">{{item.system.armor}}-armor</span>{{/if}}
+                </div>
+              </div>
+              <div class="item-controls">
+                <a class="item-control gear-use" title="{{localize 'AMW.Use'}}"><i class="fas fa-shield-alt"></i></a>
+                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+            {{/each}}
+          </ol>
+          <div class="item-create" data-type="gear" data-gear-type="armor">
+            <a>{{localize "AMW.CreateArmor"}}</a>
+          </div>
+        </div>
+
+        {{!-- Equipment --}}
+        <div class="gear-category">
+          <h2>{{localize "AMW.Equipment"}}</h2>
+          <ol class="items-list">
+            {{#each equipment as |item id|}}
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <div class="item-name flexrow">
+                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                <h4>{{item.name}}</h4>
+                <div class="item-description">{{item.system.description}}</div>
+              </div>
+              <div class="item-controls">
+                <a class="item-control gear-use" title="{{localize 'AMW.Use'}}"><i class="fas fa-hand-paper"></i></a>
+                <a class="item-control item-edit" title="{{localize 'AMW.Edit'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="{{localize 'AMW.Delete'}}"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+            {{/each}}
+          </ol>
+          <div class="item-create" data-type="gear" data-gear-type="equipment">
+            <a>{{localize "AMW.CreateEquipment"}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Notes Tab --}}
+    <div class="tab" data-group="primary" data-tab="notes">
+      <div class="notes-section">
+        <div class="grid grid-2col">
+          <div class="flexcol">
+            <h3>{{localize "AMW.SpecialRelationship"}}</h3>
+            <input type="text" name="system.relationship.character" value="{{system.relationship.character}}" placeholder="{{localize 'AMW.RelationshipCharacter'}}"/>
+            <textarea name="system.relationship.description" placeholder="{{localize 'AMW.RelationshipDescription'}}">{{system.relationship.description}}</textarea>
+          </div>
+          <div class="flexcol">
+            <h3>{{localize "AMW.Biography"}}</h3>
+            {{editor system.biography target="system.biography" button=true}}
+          </div>
+        </div>
+        
+        <div class="grid grid-2col">
+          <div class="flexcol">
+            <h3>{{localize "AMW.Notes"}}</h3>
+            {{editor system.notes target="system.notes" button=true}}
+          </div>
+          <div class="flexcol">
+            <h3>{{localize "AMW.GMNotes"}}</h3>
+            {{editor system.gmNotes target="system.gmNotes" button=true}}
+          </div>
+        </div>
+
+        {{!-- Current Script/Movie Info --}}
+        <div class="script-info">
+          <h3>{{localize "AMW.CurrentScript"}}</h3>
+          <div class="grid grid-3col">
+            <div>
+              <label>{{localize "AMW.ScriptType"}}</label>
+              <select name="system.script.type">
+                <option value="">--</option>
+                {{#each config.scripts as |label key|}}
+                <option value="{{key}}" {{#if (eq ../system.script.type key)}}selected{{/if}}>{{localize label}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div>
+              <label>{{localize "AMW.Villain"}}</label>
+              <input type="text" name="system.script.villain" value="{{system.script.villain}}" placeholder="{{localize 'AMW.VillainName'}}"/>
+            </div>
+            <div>
+              <label>{{localize "AMW.Camaraderie"}}</label>
+              <input type="number" name="system.camaraderie" value="{{system.camaraderie}}" min="-3" max="3"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
